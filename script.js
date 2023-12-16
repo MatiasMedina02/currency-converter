@@ -60,9 +60,13 @@ async function getExchangeRate(){
 
     if (response.ok) {
       const data = await response.json();
+      const amountFrom = Number(data.amount).toFixed(2);
+      const currencyCodeFrom = data.base_currency_code;
+      const amountTo = Number(data.rates[toValue].rate_for_amount).toFixed(2);
+      const currencyCodeTo = Object.keys(data.rates)[0];
 
       const newResult = document.createElement("span");
-      newResult.textContent = `${Number(data.amount).toFixed(2)} ${data.base_currency_code} = ${Number(data.rates[toValue].rate_for_amount).toFixed(2)} ${Object.keys(data.rates)[0]}`;
+      newResult.textContent = `${amountFrom} ${currencyCodeFrom} = ${amountTo} ${currencyCodeTo}`;
       divResult.appendChild(newResult);
     } else {
       console.log("Respuesta de red OK pero respuesta HTTP no OK");
