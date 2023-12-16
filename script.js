@@ -20,8 +20,10 @@ async function getOptions(){
 
     if (response.ok) {
       const data = await response.json();
+      // Ordena por orden alfábetico
       const currencyKeys = Object.keys(data.currencies).sort();
 
+      // Añade los valores como options a los select
       currencyKeys.forEach((key) => {
         const currencyFrom = document.createElement("option");
         currencyFrom.value = key;
@@ -41,6 +43,7 @@ async function getOptions(){
   }
 }
 
+// Función para intercambiar los valores de los select
 function changeCurrency(){
   const selectedFrom = selectFrom.value;
   const selectedTo = selectTo.value;
@@ -49,6 +52,7 @@ function changeCurrency(){
   selectTo.value = selectedFrom;
 }
 
+// Función para calcular la equivalencia de las monedas
 async function getExchangeRate(){
   const amountValue = inputAmount.value;
   const fromValue = selectFrom.value;
