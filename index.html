@@ -4,22 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proyecto Final</title>
+  <link rel="icon" href="./icon.png" type="image/png">
+  <title>Currency Converter</title>
   <link rel="stylesheet" href="./styles.css">
   <script src="./script.js" defer></script>
 </head>
 
 <body>
   <div class="container">
-    <h1>Currency Converter</h1>
-    <h3>Enter Amount</h3>
+    <h1 class="title">Currency Converter</h1>
+    <h3 class="text">Enter Amount</h3>
     <input type="number" class="input_amount">
-    <h3>From</h3>
-    <select class="select_from"></select>
-    <h3>To</h3>
-    <select class="select_to"></select>
+
+    <div class="container_change">
+      <div class="container_select">
+        <h3 class="text">From</h3>
+        <select class="select select_from"></select>
+      </div>
+      <button type="button" class="btn_change">
+        <svg width="35" height="35" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"></path>
+        </svg>
+      </button>
+      <div class="container_select">
+        <h3 class="text">To</h3>
+      <select class="select select_to"></select>
+      </div>
+    </div>
+
     <div class="result"></div>
-    <button class="btn_convert">Get Exchange Rate</button>
+    <button type="button" class="btn_convert">Get Exchange Rate</button>
   </div>
 
 
