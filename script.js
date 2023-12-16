@@ -14,7 +14,7 @@ btnChange.addEventListener("click", changeCurrency);
 
 btnConvert.addEventListener("click", getExchangeRate);
 
-async function getOptions(){
+async function getOptions() {
   try {
     const response = await fetch(`${API_URL}/list?api_key=${API_KEY}`);
 
@@ -44,7 +44,7 @@ async function getOptions(){
 }
 
 // Función para intercambiar los valores de los select
-function changeCurrency(){
+function changeCurrency() {
   const selectedFrom = selectFrom.value;
   const selectedTo = selectTo.value;
 
@@ -53,7 +53,7 @@ function changeCurrency(){
 }
 
 // Función para calcular la equivalencia de las monedas
-async function getExchangeRate(){
+async function getExchangeRate() {
   const amountValue = inputAmount.value;
   const fromValue = selectFrom.value;
   const toValue = selectTo.value;
@@ -64,11 +64,18 @@ async function getExchangeRate(){
 
     if (response.ok) {
       const data = await response.json();
-      const amountFrom = Number(data.amount).toFixed(2);
+      const amountFrom = Number(data.amount).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
       const currencyCodeFrom = data.base_currency_code;
-      const amountTo = Number(data.rates[toValue].rate_for_amount).toFixed(2);
+      const amountTo = Number(data.rates[toValue].rate_for_amount).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
       const currencyCodeTo = Object.keys(data.rates)[0];
 
+      // Se muestra el resultado del calculo
       const newResult = document.createElement("span");
       newResult.textContent = `${amountFrom} ${currencyCodeFrom} = ${amountTo} ${currencyCodeTo}`;
       divResult.appendChild(newResult);
